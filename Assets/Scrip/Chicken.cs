@@ -36,19 +36,15 @@ public class Chicken: Animal
     public override string Produce()
 
     {
-        Debug.Log($"{Name} produced {eggs} eggs.");
-        if (Happiness < 50)
-        {
-            return "Chicken cannot produce eggs because Happiness is too low.";
-        }
-        else if (Happiness >= 51 && Happiness <= 79)
-        {
-            return "Chicken produced 2 eggs.";
-        }
-        else
-        {
-            return "Chicken produced 3 eggs.";
-        }
+        int laid = 0;
+        if (Happiness <= 50) laid = 0;
+        else if (Happiness <= 79) laid = 2;
+        else laid = 3;
+
+        Eggs += laid;
+        return $"{Name} produced {laid} eggs. Total eggs: {Eggs} eggs.";
+
+        
     }
 
 

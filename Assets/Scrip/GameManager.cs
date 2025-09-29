@@ -37,19 +37,40 @@ public class GameManager : MonoBehaviour
             animal.MakeSound();
             animal.Feed(5);
         }
-        /*animals[0].Feed("Corn", 3);
-        animals[0].Sleep();
-        animals[0].ShowStatus();
+        animals[0].Feed(10);// Feed แบบที่ 1
 
-        //cow
-        animals[1].Feed("Hay", 5); 
-        animals[1].Moo();
-        animals[1].ShowStatus();
+        animals[0].Feed(FoodType.Grain, 20); // Feed แบบที่ 2
+        Debug.Log(animals[0].Produce());
 
-        //cat
-        animals[2].Feed("Fish", 5); 
-        animals[2].MakeSound();
-        animals[2].ShowStatus();*/
+        animals[0].Feed(FoodType.Grain, 30);
+        Debug.Log(animals[0].Produce());
+
+        animals[0].Feed(FoodType.Grain, 30);
+        Debug.Log(animals[0].Produce());
+
+        animals[0].Feed(FoodType.RottenFood, 10);
+        Debug.Log(animals[0].Produce());
+
+        animals[1].Feed(FoodType.RottenFood, 10);
+        Debug.Log(animals[1].Produce());
+
+        animals[1].Feed(FoodType.Hay, 10);
+        Debug.Log(animals[1].Produce());
+
+        animals[2].Feed(FoodType.Tuna, 30);
+        Debug.Log(animals[2].Produce());
+
+        animals[2].Feed(FoodType.RottenFood, 30);
+        Debug.Log(animals[2].Produce());
+
+        foreach (var animal in animals)
+        {
+            animal.ShowStatus();
+
+        }
+
+
+
 
     }
 }

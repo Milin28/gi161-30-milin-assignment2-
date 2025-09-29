@@ -9,13 +9,3 @@ public enum FoodType
     AnimalFood
 
 }
-public class Food : MonoBehaviour
-{
-    public FoodType foodType;
-    public int nutritionValue;
-    public void Init(FoodType type, int nutrition)
-    {
-        foodType = type;
-        nutritionValue = nutrition;
-    }
-}

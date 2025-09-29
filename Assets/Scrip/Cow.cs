@@ -38,11 +38,11 @@ public class Cow : Animal
         Debug.Log($"{Name} produced {milk} liters of milk.");
         if (Happiness < 70)
         {
-            return "Cow cannot produce milk because Happiness is too low.";
+            return $"{Name} cannot produce milk because Happiness is too low.";
         }
         else
         {
-            // Producing milk based on Happiness
+          
             int milkProduced = Happiness / 10;
             return $"Total Milk: {milkProduced} units";
         }

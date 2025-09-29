@@ -4,16 +4,8 @@ using UnityEngine;
 public class NewFarmAnimal : Animal
 
 {
-    private int kittens;
-    public int Kittens
-    {
-        get { return kittens; }
-        set
-        {
-            if (value >= 0) kittens = value;
-            else kittens = 0;
-        }
-    }
+    public int NewResource { get; private set; }
+    
     public override void MakeSound()
     {
         
@@ -26,18 +18,14 @@ public class NewFarmAnimal : Animal
     public override string Produce()
 
     {
-        Debug.Log($"{Name} produced {kittens} kittens.");
-        if (Happiness < 50)
-        {
-            return "Cat cannot produce kittens because Happiness is too low.";
-        }
-        else if (Happiness >= 51 && Happiness <= 79)
-        {
-            return "Cat produced 1 kitten.";
-        }
-        else
-        {
-            return "Cat produced 2 kittens.";
-        }
+        int kit = 0;
+        if (Happiness <= 50) kit = 0;
+        else if (Happiness <= 79) kit = 4;
+        else kit = 6;
+
+        NewResource += kit;
+        return $"{Name} produced {kit} kittens. Total Kittens: {NewResource} kittens.";
+
+       
     }
 }
