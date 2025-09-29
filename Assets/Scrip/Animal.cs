@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Animal : MonoBehaviour
+public abstract class Animal : MonoBehaviour
 {
     private string name;
     public string Name
@@ -36,11 +36,13 @@ public class Animal : MonoBehaviour
             else happiness = value;
         }
     }
-    public void Init(string newName, int newHunger, int newHappiness)
+    public FoodType PreferedFood { get;protected set; }
+
+    public void Init(string newName)
     {
         Name = newName;
-        Hunger = newHunger;
-        Happiness = newHappiness;
+        Hunger = 50;
+        Happiness = 50;
 
     }
     public void AdjustHunger(int amount)
@@ -53,11 +55,19 @@ public class Animal : MonoBehaviour
         Happiness += amount;
         if (Happiness < 0) Happiness = 0;
     }
-    public virtual void MakeSound()
+    /*public virtual void MakeSound()
     {
         Debug.Log($"Animal sounds??");
+    }*/
+    //public abstract void MakeSound(Animal target);
+    public abstract void MakeSound();
+    public virtual void ShowStatus()
+    {
+        Debug.Log($"Animal name: {Name} | Animal Hunger: {Hunger} | Animal Happiness: {Happiness} | Prefered Food {PreferedFood} ");
     }
-    public void Feed(int foodAmount)
+
+
+    /*public void Feed(int foodAmount)
     {
         AdjustHunger(foodAmount);
         Debug.Log($"{Name} has been fed with {foodAmount} units of food.");
@@ -66,12 +76,47 @@ public class Animal : MonoBehaviour
     {
         AdjustHunger(foodAmount);
         Debug.Log($"{Name} has been fed with {foodAmount} units of {foodType} food.");
-    }
-    public virtual void ShowStatus()
+    }*/
+
+
+    public abstract string Produce();
+    public virtual void Feed(int amount) // Feed แบบที่ 1
     {
-        Debug.Log($"Animal name: {Name} | Animal Hunger: {Hunger} | Animal Happiness: {Happiness} ");
+        Hunger -= amount;
+        if (Hunger < 0) Hunger = 0;
+
+        Happiness += amount / 2;
+        
+
+        Debug.Log($"{Name} was fed {amount} units of generic food. Current Happiness {Happiness}");
     }
 
+    // Feed แบบที่ 2
+    public virtual void Feed(FoodType foodType, int amount)
+    {
+        if (foodType == PreferedFood)
+        {
+            Hunger -= amount;
+            if (Hunger < 0) Hunger = 0;
+
+            Happiness += 15;
+
+                Debug.Log($"{Name} was fed({foodType}), ปริมาณอาหาร {amount}, Happiness เพิ่มเป็น {Happiness}");
+        }
+        else if (foodType == FoodType.RottenFood)
+        {
+            // Hunger ไม่ลด
+            Happiness -= 20;
+            if (Happiness < 0) Happiness = 0;
+
+            Debug.Log($"{Name} ได้รับอาหารเน่า รู้สึกไม่ดี Happiness ลดลงเป็น {Happiness}");
+        }
+        else
+        {
+            // อาหารที่ไม่ชอบ 
+            Feed(amount); 
+        }
+    }
 
 
     // ลองทำแล้วมันไม่ได้ เลยเอามาใส่ในนี้แทน

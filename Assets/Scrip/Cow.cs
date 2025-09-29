@@ -19,20 +19,37 @@ public class Cow : Animal
     /// methoods
     public override void MakeSound()
     {
-        
+      
         Debug.Log($"{Name} say Moo!");
     }
-    /*public override void ShowStatus()
-    {
-        base.ShowStatus();
-        Console.WriteLine($"Cow Milk: {milk}");
-    }*/
+    
     public override void Moo()
     {
         base.Moo();
-    }   
-    
-    
+    }
+    public Cow()
+    {
+        PreferedFood = FoodType.Hay;
+    }
+    public override string Produce()
+
+    {
+        
+        Debug.Log($"{Name} produced {milk} liters of milk.");
+        if (Happiness < 70)
+        {
+            return "Cow cannot produce milk because Happiness is too low.";
+        }
+        else
+        {
+            // Producing milk based on Happiness
+            int milkProduced = Happiness / 10;
+            return $"Total Milk: {milkProduced} units";
+        }
+
+
+    }
+
 
 
 }

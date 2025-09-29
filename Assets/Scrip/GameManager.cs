@@ -13,17 +13,17 @@ public class GameManager : MonoBehaviour
         
         //chicken
         currentAnimal = Instantiate(animalsPrefabs[0]);
-        currentAnimal.Init("Mori", 10, 10);
+        currentAnimal.Init("Mori");
         animals.Add(currentAnimal);
 
         //cow
         currentAnimal = Instantiate(animalsPrefabs[1]);
-        currentAnimal.Init("Boo", 20, 20);
+        currentAnimal.Init("Boo");
         animals.Add(currentAnimal);
 
         //cat
         currentAnimal = Instantiate(animalsPrefabs[2]);
-        currentAnimal.Init("Neko", 15, 5);
+        currentAnimal.Init("Neko");
         animals.Add(currentAnimal);
         Debug.Log($"There are {animals.Count} animals living in the Oasis Farm ");
         //show status
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
             animal.MakeSound();
             animal.Feed(5);
         }
-        animals[0].Feed("Corn", 3);
+        /*animals[0].Feed("Corn", 3);
         animals[0].Sleep();
         animals[0].ShowStatus();
 
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         //cat
         animals[2].Feed("Fish", 5); 
         animals[2].MakeSound();
-        animals[2].ShowStatus();
+        animals[2].ShowStatus();*/
 
     }
 }
